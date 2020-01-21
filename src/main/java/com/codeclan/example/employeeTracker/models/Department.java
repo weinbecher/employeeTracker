@@ -1,13 +1,22 @@
 package com.codeclan.example.employeeTracker.models;
 
-
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "departments")
 public class Department {
-    private String name;
-    private List<Employee> employees;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Employee> employees;
 
     public Department() {
     }

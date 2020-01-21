@@ -1,10 +1,27 @@
 package com.codeclan.example.employeeTracker.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "employees")
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "employee_num")
     private int employeeNum;
+
     private Project project;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 
     public Employee() {
